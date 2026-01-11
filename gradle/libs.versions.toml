@@ -13,8 +13,13 @@ navigation = "2.8.5"
 mediarouter = "1.8.1"
 material = "1.11.0"
 appcompat = "1.6.1"
+intuit = "1.0.6"
+gifDrawable = "1.2.17"
 
 [libraries]
+android-gif-drawable = { group = "pl.droidsonroids.gif", name = "android-gif-drawable", version.ref = "gifDrawable" }
+sdp-android = { group = "com.intuit.sdp", name = "sdp-android", version.ref = "intuit" }
+ssp-android = { group = "com.intuit.ssp", name = "ssp-android", version.ref = "intuit" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
