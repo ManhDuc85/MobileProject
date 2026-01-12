@@ -3,9 +3,13 @@ package com.myapp.myrecipes.retrofit
 import com.myapp.myrecipes.dataclass.MealList
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface MealApi {
 
     @GET("random.php")
     fun getRandomMeal():Call<MealList>
+
+    @GET("lookup.php?")
+    fun getMealDetails(@Query("1") id: String) : Call<MealList>
 }

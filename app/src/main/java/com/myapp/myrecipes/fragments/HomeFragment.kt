@@ -1,5 +1,6 @@
 package com.myapp.myrecipes.fragments
 
+import android.content.Intent
 import android.os.Binder
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.myapp.myrecipes.R
+import com.myapp.myrecipes.activities.MealActivity
 import com.myapp.myrecipes.databinding.FragmentHomeBinding
 import com.myapp.myrecipes.dataclass.Meal
 import com.myapp.myrecipes.dataclass.MealList
@@ -24,6 +26,14 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeMvvm: HomeViewModel
+    private lateinit var randomMeal: Meal
+
+    companion object{
+        const val MEAL_ID = "com.myapp.myrecipes.fragments.idMeal"
+        const val MEAL_NAME = "com.myapp.myrecipes.fragments.nameMeal"
+        const val MEAL_THUMB = "com.myapp.myrecipes.fragments.thumbMeal"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         homeMvvm = ViewModelProvider(this)[HomeViewModel::class.java]
@@ -42,7 +52,17 @@ class HomeFragment : Fragment() {
 
         homeMvvm.getRandomMeal()
         observerRandomMeal()
+        onRandomMealClick()
+    }
 
+    fun onRandomMealClick(){
+        binding.randomFoodCard.setOnClickListener {
+            val intent = Intent(activity, MealActivity::class.java)
+            intent.putExtra(MEAL_ID, randomMeal.idMeal)
+            intent.putExtra(MEAL_NAME, randomMeal.strMeal)
+            intent.putExtra(MEAL_THUMB, randomMeal.strMealThumb)
+            startActivity(intent)
+        }
     }
 
     private fun observerRandomMeal(){
@@ -50,6 +70,8 @@ class HomeFragment : Fragment() {
                 Glide.with(this@HomeFragment)
                     .load(meal!!.strMealThumb)
                     .into(binding.randomFoodImg)
+
+                this.randomMeal = meal
         }
     }
 
