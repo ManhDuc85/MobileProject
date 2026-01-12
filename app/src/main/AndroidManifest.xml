@@ -15,6 +15,10 @@
         android:theme="@style/Theme.MyRecipes"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.CategoryMealsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MyRecipes" />
+        <activity
             android:name=".activities.MealActivity"
             android:exported="false"
             android:theme="@style/Theme.MyRecipes" />
