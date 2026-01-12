@@ -15,8 +15,13 @@ material = "1.11.0"
 appcompat = "1.6.1"
 intuit = "1.0.6"
 gifDrawable = "1.2.17"
+retrofit = "2.9.0"
+glide = "4.16.0"
 
 [libraries]
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 android-gif-drawable = { group = "pl.droidsonroids.gif", name = "android-gif-drawable", version.ref = "gifDrawable" }
 sdp-android = { group = "com.intuit.sdp", name = "sdp-android", version.ref = "intuit" }
 ssp-android = { group = "com.intuit.ssp", name = "ssp-android", version.ref = "intuit" }

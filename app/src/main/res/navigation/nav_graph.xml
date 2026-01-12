@@ -7,16 +7,16 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.myapp.myrecipes.HomeFragment"
+        android:name="com.myapp.myrecipes.fragments.HomeFragment"
         android:label="fragment_home" />
     <fragment
         android:id="@+id/favouriteFragment"
-        android:name="com.myapp.myrecipes.FavouriteFragment"
+        android:name="com.myapp.myrecipes.fragments.FavouriteFragment"
         android:label="fragment_favourite"
         tools:layout="@layout/fragment_favourite" />
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.myapp.myrecipes.CategoryFragment"
+        android:name="com.myapp.myrecipes.fragments.CategoryFragment"
         android:label="fragment_category"
         tools:layout="@layout/fragment_category" />
 </navigation>
