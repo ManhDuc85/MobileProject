@@ -1,6 +1,9 @@
 package com.myapp.myrecipes.activities
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -21,6 +24,7 @@ class MealActivity : AppCompatActivity() {
     private lateinit var mealId: String
     private lateinit var mealName: String
     private lateinit var mealThumb:String
+    private lateinit var youtubeLink:String
     private lateinit var binding: ActivityMealBinding
     private lateinit var mealMvvm: MealViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,16 +34,28 @@ class MealActivity : AppCompatActivity() {
         mealMvvm = ViewModelProvider(this)[MealViewModel::class.java]
         getMealInformationFromIntent()
         setInformationInViews()
+
+        loadingCase()
         mealMvvm.getMealDetail(mealId)
         observerMealDetailsLiveData()
+
+        onYoutubeBtnClicked()
+    }
+
+    private fun onYoutubeBtnClicked() {
+        binding.youtubeIcon.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(youtubeLink))
+            startActivity(intent)
+        }
     }
 
     private fun observerMealDetailsLiveData() {
         mealMvvm.observerMealDetailsLiveData().observe(this) { meal ->
-
+            onResponseCase()
             binding.categoryTextview.text = "Category: ${meal.strCategory}"
             binding.areaTextview.text = "Area: ${meal.strArea}"
             binding.instructionsDetailTextview.text = meal.strInstructions
+            youtubeLink = meal.strYoutube
         }
     }
 
@@ -59,5 +75,23 @@ class MealActivity : AppCompatActivity() {
         mealName = intent.getStringExtra(HomeFragment.MEAL_NAME)!!
         mealThumb = intent.getStringExtra(HomeFragment.MEAL_THUMB)!!
 
+    }
+
+    private fun loadingCase(){
+        binding.progressBar.visibility = View.VISIBLE
+        binding.btnAddToFav.visibility = View.INVISIBLE
+        binding.instructionsTextview.visibility = View.INVISIBLE
+        binding.categoryTextview.visibility = View.INVISIBLE
+        binding.areaTextview.visibility = View.INVISIBLE
+        binding.youtubeIcon.visibility = View.INVISIBLE
+    }
+
+    private fun onResponseCase(){
+        binding.progressBar.visibility = View.INVISIBLE
+        binding.btnAddToFav.visibility = View.VISIBLE
+        binding.instructionsTextview.visibility = View.VISIBLE
+        binding.categoryTextview.visibility = View.VISIBLE
+        binding.areaTextview.visibility = View.VISIBLE
+        binding.youtubeIcon.visibility = View.VISIBLE
     }
 }
