@@ -13,6 +13,7 @@ abstract class MealDatabase: RoomDatabase() {
     abstract fun mealDao(): MealDao
 
     companion object{
+        @Volatile
         var INSTANCE: MealDatabase? = null
 
         @Synchronized

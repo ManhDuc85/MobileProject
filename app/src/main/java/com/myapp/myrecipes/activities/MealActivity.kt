@@ -55,7 +55,7 @@ class MealActivity : AppCompatActivity() {
             binding.categoryTextview.text = "Category: ${meal.strCategory}"
             binding.areaTextview.text = "Area: ${meal.strArea}"
             binding.instructionsDetailTextview.text = meal.strInstructions
-            youtubeLink = meal.strYoutube
+            youtubeLink = meal.strYoutube.toString()
         }
     }
 

@@ -1,17 +1,18 @@
 package com.myapp.myrecipes.db
 
+import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 
 @TypeConverters
 class MealTypeConverter {
-    @TypeConverters
+    @TypeConverter
     fun fromAnyToString(attribute:Any?) : String{
         if(attribute == null)
             return ""
         return attribute as String
     }
 
-    @TypeConverters
+    @TypeConverter
     fun fromStringToAny(attribute: String?) : Any{
         if(attribute == null)
             return ""
