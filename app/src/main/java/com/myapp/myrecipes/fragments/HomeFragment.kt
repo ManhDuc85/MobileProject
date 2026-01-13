@@ -70,6 +70,7 @@ class HomeFragment : Fragment() {
         observeCategoriesLiveData()
         onCategoryClicked()
 
+
     }
 
     private fun onCategoryClicked() {
